@@ -25,6 +25,7 @@ public class AirportAPI {
 
     @GetMapping
     List<AirportDTO> getAll() {
+        log.info("Get all airports");
         return airportMapper.mapToListDTO(airportService.getAll());
     }
 
