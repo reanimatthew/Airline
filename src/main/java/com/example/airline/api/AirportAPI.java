@@ -31,6 +31,7 @@ public class AirportAPI {
 
     @GetMapping("name")
     AirportDTO getByIATA(String iata) {
+        log.info("Get by IATA");
         return airportMapper.mapToDTO(airportService.getByIATA(iata));
     }
 
