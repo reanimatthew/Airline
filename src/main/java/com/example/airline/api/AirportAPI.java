@@ -7,7 +7,7 @@ import com.example.airline.service.AirportService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +18,7 @@ import java.util.List;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
+@Slf4j
 public class AirportAPI {
     AirportService airportService;
     AirportMapper airportMapper;
@@ -35,6 +36,7 @@ public class AirportAPI {
     @PostMapping("save")
     @ResponseStatus(HttpStatus.CREATED)
     AirportDTO save(@RequestBody AirportDTO airportDTO) {
+        log.info("Save new airport");
         Airport airport = airportMapper.mapToEntity(airportDTO);
         return airportMapper.mapToDTO(airportService.save(airport));
     }
