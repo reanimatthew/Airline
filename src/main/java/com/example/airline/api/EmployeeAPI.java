@@ -33,6 +33,9 @@ public class EmployeeAPI {
 
     @GetMapping("passport")
     public EmployeeDTO getByPassport(String passport) {
+        if (passport == null) {
+            throw new RuntimeException();
+        }
         log.info("Get by passport");
         return employeeMapper.mapToDTO(employeeService.getByPassport(passport));
     }
