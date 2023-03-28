@@ -33,6 +33,7 @@ public class EmployeeAPI {
 
     @GetMapping("passport")
     public EmployeeDTO getByPassport(String passport) {
+        log.info("Get by passport");
         return employeeMapper.mapToDTO(employeeService.getByPassport(passport));
     }
 
