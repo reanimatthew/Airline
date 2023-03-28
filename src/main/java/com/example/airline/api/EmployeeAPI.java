@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/employees")
@@ -33,9 +34,7 @@ public class EmployeeAPI {
 
     @GetMapping("passport")
     public EmployeeDTO getByPassport(String passport) {
-        if (passport == null) {
-            throw new RuntimeException();
-        }
+        Optional.ofNullable(passport).orElseThrow();
         log.info("Get by passport");
         return employeeMapper.mapToDTO(employeeService.getByPassport(passport));
     }
