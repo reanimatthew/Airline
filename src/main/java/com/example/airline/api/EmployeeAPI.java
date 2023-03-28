@@ -7,7 +7,7 @@ import com.example.airline.service.EmployeeService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +18,7 @@ import java.util.List;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
-
+@Slf4j
 
 //TODO Постман выбрасывает ошибку! Непонятно, откуда она берется
 public class EmployeeAPI {
@@ -27,6 +27,7 @@ public class EmployeeAPI {
 
     @GetMapping
     public List<EmployeeDTO> getAll() {
+        log.info("Get all employees");
         return employeeMapper.mapToListDTO(employeeService.getAll());
     }
 
